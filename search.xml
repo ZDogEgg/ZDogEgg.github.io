@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MongoDB配置</title>
+      <link href="2021/05/01/mongodb-pei-zhi/"/>
+      <url>2021/05/01/mongodb-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y update</span><br><span class="line">sudo yum -y install epel-release</span><br><span class="line">sudo yum -y install docker-io</span><br></pre></td></tr></table></figure><h2 id="启动Docker"><a href="#启动Docker" class="headerlink" title="启动Docker"></a>启动Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure><h2 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest</span><br><span class="line">sudo docker images</span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth</span><br><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure><h2 id="创建admin账户"><a href="#创建admin账户" class="headerlink" title="创建admin账户"></a>创建admin账户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mongo mongo admin</span><br><span class="line">db.createUser(&#123; user:&#39;admin&#39;,pwd:&#39;123456&#39;,roles:[ &#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;]&#125;);</span><br><span class="line">db.auth(&#39;admin&#39;, &#39;123456&#39;)</span><br></pre></td></tr></table></figure><h2 id="创建数据库实例"><a href="#创建数据库实例" class="headerlink" title="创建数据库实例"></a>创建数据库实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名</span><br><span class="line">db.createUser(&#123; user:&#39;xxxx&#39;,pwd:&#39;xxxxxx&#39;,roles:[&#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;,&#123; role:&#39;dbAdmin&#39;, db: &#39;数据库名&#39;&#125;]&#125;);</span><br><span class="line">db.auth(&#39;xxxx&#39;, &#39;xxxxxx&#39;)</span><br></pre></td></tr></table></figure><h2 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MongoDB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown学习</title>
       <link href="2021/04/30/markdown-xue-xi/"/>
       <url>2021/04/30/markdown-xue-xi/</url>
