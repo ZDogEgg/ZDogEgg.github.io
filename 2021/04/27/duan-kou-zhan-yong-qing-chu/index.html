@@ -387,7 +387,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
 <p>然后回车，就可以看到系统当前所有的端口使用情况。<br>3、通过命令查找某一特定端口，在命令窗口中输入命令中输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano |findstr &quot;端口号&quot;</span><br></pre></td></tr></table></figure>
-<p>，然后回车就可以看到这个端口被哪个应用占用。<br>4、查看到对应的进程id之后，就可以通过id查找对应的进程名称，使用命令</p>
+<p>，然后回车就可以看到这个端口被哪个应用占用。<br>4、查看到对应的进程id之后，就可以通过id杀掉端口，使用命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill &#x2F;pid &quot;端口号&quot; -t -f</span><br></pre></td></tr></table></figure>
 
 
