@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux命令</title>
+      <link href="2021/05/15/linux-ming-ling/"/>
+      <url>2021/05/15/linux-ming-ling/</url>
+      
+        <content type="html"><![CDATA[<h2 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h2><ul><li>切换目录：<code>cd 目录名</code></li><li>查看目录：<code>ls -1</code></li></ul><h2 id="压缩包操作"><a href="#压缩包操作" class="headerlink" title="压缩包操作"></a>压缩包操作</h2><ul><li>解压缩tar包：<code>tar -xzvf ../xxx.tar</code></li><li>解压缩zip包：<code>unzip ../xxx.zip</code></li></ul><h2 id="不常用命令"><a href="#不常用命令" class="headerlink" title="不常用命令"></a>不常用命令</h2><ul><li>远程登录云服务器：<code>ssh 用户名@公网IP</code></li><li>上传到云服务器：<code>scp xxx.tar 用户名@公网IP:~/</code></li><li>创建目录：<code>mkdir</code></li></ul><h2 id="运行SpringBoot的命令"><a href="#运行SpringBoot的命令" class="headerlink" title="运行SpringBoot的命令"></a>运行SpringBoot的命令</h2><p><code>mvn clean spring-boot:run</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MongoDB配置</title>
       <link href="2021/05/01/mongodb-pei-zhi/"/>
       <url>2021/05/01/mongodb-pei-zhi/</url>
