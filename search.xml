@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>GUI编程</title>
+      <link href="2021/07/31/gui-bian-cheng/"/>
+      <url>2021/07/31/gui-bian-cheng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="GUI编程"><a href="#GUI编程" class="headerlink" title="GUI编程"></a>GUI编程</h2><h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><p>GUI的核心技术：Swing  AWT</p><ol><li>界面不美观</li><li>需要JRE环境</li></ol><p>为什么要学习？</p><ol><li>可以写出自己心中想要的小工具</li><li>工作时，可能要维护Swing界面</li><li>了解MVC架构，了解监听</li></ol><h3 id="2、AWT"><a href="#2、AWT" class="headerlink" title="2、AWT"></a>2、AWT</h3><h4 id="2-1、AWT介绍"><a href="#2-1、AWT介绍" class="headerlink" title="2.1、AWT介绍"></a>2.1、AWT介绍</h4><ol><li>包含了很多的类和接口</li></ol><p>GUI：图形用户界面编程</p><ol start="2"><li>元素：窗口，按钮，文本框</li><li>java.awt</li></ol><h4 id="2-2、组件和容器"><a href="#2-2、组件和容器" class="headerlink" title="2.2、组件和容器"></a>2.2、组件和容器</h4><h5 id="1、Frame"><a href="#1、Frame" class="headerlink" title="1、Frame"></a>1、Frame</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Frame frame = <span class="keyword">new</span> Frame(<span class="string">&quot;我的第一个java图形界面窗口&quot;</span>);</span><br><span class="line">    <span class="comment">//设置可见性</span></span><br><span class="line">    frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    frame.setSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">    frame.setBackground(<span class="keyword">new</span> Color(<span class="number">123</span>, <span class="number">45</span>, <span class="number">243</span>));</span><br><span class="line">    frame.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">    frame.setResizable(<span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>问题：窗口关闭不掉</p><h3 id="3、Swing"><a href="#3、Swing" class="headerlink" title="3、Swing"></a>3、Swing</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JDBC</title>
       <link href="2021/07/31/jdbc/"/>
       <url>2021/07/31/jdbc/</url>
@@ -60,7 +85,7 @@
       <link href="2021/07/28/java-de-ji-ben-cheng-xu-she-ji-jie-gou/"/>
       <url>2021/07/28/java-de-ji-ben-cheng-xu-she-ji-jie-gou/</url>
       
-        <content type="html"><![CDATA[<h3 id="1、注释"><a href="#1、注释" class="headerlink" title="1、注释"></a>1、注释</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">or</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><p>注：<code>/**/</code>注释<strong>不可嵌套</strong></p><h3 id="2、数据类型"><a href="#2、数据类型" class="headerlink" title="2、数据类型"></a>2、数据类型</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">short</span> <span class="keyword">long</span> <span class="keyword">byte</span></span><br><span class="line"><span class="keyword">float</span> <span class="keyword">double</span></span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="1、注释"><a href="#1、注释" class="headerlink" title="1、注释"></a>1、注释</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">or</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><p>注：<code>/**/</code>注释<strong>不可嵌套</strong></p><h3 id="2、数据类型"><a href="#2、数据类型" class="headerlink" title="2、数据类型"></a>2、数据类型</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">short</span> <span class="keyword">long</span> <span class="keyword">byte</span></span><br><span class="line"><span class="keyword">float</span> <span class="keyword">double</span></span><br><span class="line"><span class="keyword">char</span></span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
