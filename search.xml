@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>JDBC</title>
+      <link href="2021/07/31/jdbc/"/>
+      <url>2021/07/31/jdbc/</url>
+      
+        <content type="html"><![CDATA[<h2 id="JDBC（重点）"><a href="#JDBC（重点）" class="headerlink" title="JDBC（重点）"></a>JDBC（重点）</h2><h3 id="1、数据库驱动"><a href="#1、数据库驱动" class="headerlink" title="1、数据库驱动"></a>1、数据库驱动</h3><p>程序会通过数据库驱动，和数据库打交道</p><h3 id="2、JDBC"><a href="#2、JDBC" class="headerlink" title="2、JDBC"></a>2、JDBC</h3><p>SUN公司为了简化操作，提供了Java操作数据库的规范</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据库的设计</title>
       <link href="2021/07/31/shu-ju-ku-de-she-ji/"/>
       <url>2021/07/31/shu-ju-ku-de-she-ji/</url>
