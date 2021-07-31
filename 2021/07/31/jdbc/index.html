@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据库的设计, ZDogEgg&#39;s Blog">
+    <meta name="keywords" content="JDBC, ZDogEgg&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库的设计 | ZDogEgg&#39;s Blog</title>
+    <title>JDBC | ZDogEgg&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库的设计</h1>
+                    <h1 class="description center-align post-title">JDBC</h1>
                 </div>
             </div>
         </div>
@@ -337,8 +337,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Java-MySQL/">
+                                <span class="chip bg-color">Java, MySQL</span>
                             </a>
                         
                     </div>
@@ -383,56 +383,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>分析需求：分析业务和需要处理的数据库的需求</p>
-<p>概要设计：设计关系E-R图</p>
-<h3 id="设计数据库的步骤（以个人博客为例）"><a href="#设计数据库的步骤（以个人博客为例）" class="headerlink" title="设计数据库的步骤（以个人博客为例）"></a>设计数据库的步骤（以个人博客为例）</h3><ol>
-<li>收集信息，分析需求</li>
-</ol>
-<ul>
-<li><p>用户表</p>
-</li>
-<li><p>分类表</p>
-</li>
-<li><p>文章表</p>
-</li>
-<li><p>评论表</p>
-</li>
-<li><p>友链表</p>
-</li>
-</ul>
-<ol start="2">
-<li>标识实体</li>
-<li>标识实体之间的关系</li>
-</ol>
-<h3 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h3><p>为什么需要数据规范化？</p>
-<ul>
-<li>信息重复</li>
-<li>更新异常</li>
-<li>插入异常<ul>
-<li>无法正常显示信息</li>
-</ul>
-</li>
-<li>删除异常<ul>
-<li>丢失有效信息</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>三大范式</p>
-</blockquote>
-<h4 id="第一范式（1NF）"><a href="#第一范式（1NF）" class="headerlink" title="第一范式（1NF）"></a>第一范式（1NF）</h4><p>原子性：保证每一列不可再分</p>
-<h4 id="第二范式（2NF）"><a href="#第二范式（2NF）" class="headerlink" title="第二范式（2NF）"></a>第二范式（2NF）</h4><p>前提：满足第一范式</p>
-<p>每张表只描述一件事情</p>
-<h4 id="第三范式（3NF）"><a href="#第三范式（3NF）" class="headerlink" title="第三范式（3NF）"></a>第三范式（3NF）</h4><p>前提：满足第一范式和第二范式</p>
-<p>表中每一列数据都和主键直接相关，而不能间接相关</p>
-<h4 id="规范性-和-性能的问题"><a href="#规范性-和-性能的问题" class="headerlink" title="规范性 和 性能的问题"></a>规范性 和 性能的问题</h4><p>关联查询的表不得超过三张</p>
-<ul>
-<li>考虑商业化的需求和目标，数据库的性能更加重要</li>
-<li>在规范性能的时候，适当考虑规范性</li>
-<li>故意给某些表增加冗余字段</li>
-<li>故意增加计算列（从大数据量降低为小数据量的查询：索引）</li>
-</ul>
-
+                
                 
             </div>
             <hr/>
@@ -458,7 +409,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://ZDogEgg.github.io/2021/07/31/shu-ju-ku-de-she-ji/">http://ZDogEgg.github.io/2021/07/31/shu-ju-ku-de-she-ji/</a>
+                    <a href="http://ZDogEgg.github.io/2021/07/31/jdbc/">http://ZDogEgg.github.io/2021/07/31/jdbc/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -496,8 +447,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Java-MySQL/">
+                                    <span class="chip bg-color">Java, MySQL</span>
                                 </a>
                             
                         </div>
@@ -542,7 +493,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2021-07-31T10-57-42',
+        id: '2021-07-31T13-51-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -570,9 +521,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/07/31/jdbc/">
                     <div class="card-image">
@@ -590,9 +542,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -605,6 +557,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -623,24 +576,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/28/java-de-ji-ben-cheng-xu-she-ji-jie-gou/">
+                <a href="/2021/07/31/shu-ju-ku-de-she-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Java的基本程序设计结构">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数据库的设计">
                         
-                        <span class="card-title">Java的基本程序设计结构</span>
+                        <span class="card-title">数据库的设计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java的基本程序设计结构
+                            软件开发中，数据库的设计
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
                             </span>
                         <span class="publish-author">
                             
@@ -657,8 +610,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
