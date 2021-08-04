@@ -395,6 +395,16 @@
 <h3 id="4、数值类型之间的合法转换"><a href="#4、数值类型之间的合法转换" class="headerlink" title="4、数值类型之间的合法转换"></a>4、数值类型之间的合法转换</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/image-20210731213910316.png"></p>
 <p>实线：无信息丢失的转换</p>
 <p>虚线：可能有精度损失的转换</p>
+<h3 id="5、字符串"><a href="#5、字符串" class="headerlink" title="5、字符串"></a>5、字符串</h3><p>Java没有内置的字符串类型，而是在标准Java类库中提供了一个预定义类——String。每个用双引号括起来的字符串都是String类的实例。</p>
+<p>Java中不能修改字符串中的单个字符，String类对象是“不可变的”</p>
+<blockquote>
+<p>检查一个字符串既不是null也不是空串</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (str != <span class="keyword">null</span> &amp;&amp; str.length() != <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line"><span class="comment">//每次需要添加一部分内容时，就调用append方法</span></span><br><span class="line">builder.append(<span class="string">&quot;ch&quot;</span>);</span><br><span class="line">builder.append(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串构建完成时，就调用toString方法，得到一个String对象，期中包含了构建器中的字符序列</span></span><br><span class="line">String completedString = builder.toString();</span><br></pre></td></tr></table></figure>
+
+<p>拼接字符串的效率低，耗时，浪费空间，构建字符串解决了这个问题 </p>
 
                 
             </div>
