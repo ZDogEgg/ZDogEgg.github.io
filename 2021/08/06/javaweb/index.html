@@ -663,7 +663,285 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 要获取下载文件的路径</span></span><br><span class="line">String path = <span class="string">&quot;C:\\Users\\24524\\Desktop\\java-servlet\\HttpResponse\\target\\HttpResponse\\WEB-INF\\classes\\背景.png&quot;</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;下载的文件路径：&quot;</span> + path);</span><br><span class="line"><span class="comment">//2. 下载的文件名是啥</span></span><br><span class="line">String fileName = path.substring(path.lastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line"><span class="comment">//3. 设置想办法让浏览器能够支持(Content-Disposition)下载我们需要的东西</span></span><br><span class="line">resp.setHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + URLEncoder.encode(fileName, <span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line"><span class="comment">//4. 获取下载文件的输入流</span></span><br><span class="line">FileInputStream in = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line"><span class="comment">//5. 创建缓冲区</span></span><br><span class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="comment">//6. 获取OutputStream对象</span></span><br><span class="line">ServletOutputStream out = resp.getOutputStream();</span><br><span class="line"><span class="comment">//7. 将FileOutputStream对象流写入到buffer缓冲区,使用OutputStream将缓冲区中的数据输出到客户端</span></span><br><span class="line"><span class="keyword">while</span> ((len = in.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    out.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">&#125;</span><br><span class="line">in.close();</span><br><span class="line">out.close();</span><br></pre></td></tr></table></figure>
 
-<h5 id="3、验证码功能"><a href="#3、验证码功能" class="headerlink" title="3、验证码功能"></a>3、验证码功能</h5><h3 id="6-7、HttpServletRequest"><a href="#6-7、HttpServletRequest" class="headerlink" title="6.7、HttpServletRequest"></a>6.7、HttpServletRequest</h3>
+<h5 id="3、验证码功能"><a href="#3、验证码功能" class="headerlink" title="3、验证码功能"></a>3、验证码功能</h5><p>验证码怎么来的？</p>
+<ul>
+<li>前端实现</li>
+<li>后端实现，需要Java的图片类，生成一个图片</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    <span class="comment">//如何让浏览器5秒刷新一次</span></span><br><span class="line">    resp.setHeader(<span class="string">&quot;refresh&quot;</span>, <span class="string">&quot;5&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在内存中创建一个图片</span></span><br><span class="line">    BufferedImage img = <span class="keyword">new</span> BufferedImage(<span class="number">80</span>, <span class="number">20</span>, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">    <span class="comment">//得到图片</span></span><br><span class="line">    Graphics2D graphics = (Graphics2D) img.getGraphics();<span class="comment">//笔</span></span><br><span class="line">    graphics.setColor(Color.cyan);</span><br><span class="line">    graphics.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">80</span>, <span class="number">80</span>);</span><br><span class="line">    <span class="comment">//给图片写数据</span></span><br><span class="line">    graphics.setColor(Color.YELLOW);</span><br><span class="line">    graphics.setFont(<span class="keyword">new</span> Font(<span class="string">&quot;宋体&quot;</span>, Font.BOLD, <span class="number">20</span>));</span><br><span class="line">    graphics.drawString(makeNum(), <span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//告诉浏览器这个请求用图片的方式打开</span></span><br><span class="line">    resp.setContentType(<span class="string">&quot;image/png&quot;</span>);</span><br><span class="line">    <span class="comment">//网站存在缓存</span></span><br><span class="line">    resp.setDateHeader(<span class="string">&quot;expires&quot;</span>, -<span class="number">1</span>);</span><br><span class="line">    resp.setHeader(<span class="string">&quot;Cache-Control&quot;</span>, <span class="string">&quot;no-cache&quot;</span>);</span><br><span class="line">    resp.setHeader(<span class="string">&quot;Pragma&quot;</span>, <span class="string">&quot;no-cache&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//图片写给浏览器</span></span><br><span class="line">    ImageIO.write(img, <span class="string">&quot;png&quot;</span>, resp.getOutputStream());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">makeNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) (((Math.random() * <span class="number">9</span>) + <span class="number">1</span>) * <span class="number">100000</span>) + <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、实现重定向"><a href="#4、实现重定向" class="headerlink" title="4、实现重定向"></a>4、实现重定向</h5><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-09_14-18-38.png"></p>
+<p>一个web资源收到客户端请求后，它会通知客户端访问另外一个web资源，这个过程叫重定向</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    resp.sendRedirect(<span class="string">&quot;/h/is&quot;</span>);<span class="comment">//重定向</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常见场景</p>
+<ul>
+<li>用户登录</li>
+</ul>
+<p>面试题：请你聊聊重定向和转发的区别</p>
+<ul>
+<li>相同点<ul>
+<li>页面都会实现跳转</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>请求转发的时候，URL不会发生变化</li>
+<li>重定向的时候，URL会发生变化</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-7、HttpServletRequest"><a href="#6-7、HttpServletRequest" class="headerlink" title="6.7、HttpServletRequest"></a>6.7、HttpServletRequest</h3><p>HttpServletRequest代表客户端的请求，用户通过Http访问服务器，Http请求中的所有信息会被封装到HttpServletRequest。通过HttpServletRequest对象的方法，获得客户端的所有信息。</p>
+<h5 id="获取前端传递的参数-请求转发"><a href="#获取前端传递的参数-请求转发" class="headerlink" title="获取前端传递的参数,请求转发"></a>获取前端传递的参数,请求转发</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    String username = req.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">    String password = req.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;==================================&quot;</span>);</span><br><span class="line">    System.out.println(username + <span class="string">&quot;:&quot;</span> + password);</span><br><span class="line">    System.out.println(<span class="string">&quot;==================================&quot;</span>);</span><br><span class="line"></span><br><span class="line">    req.getRequestDispatcher(<span class="string">&quot;/Success.jsp&quot;</span>).forward(req, resp);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>面试题：请你聊聊重定向和转发的区别</p>
+<ul>
+<li>相同点<ul>
+<li>页面都会实现跳转</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>请求转发的时候，URL不会发生变化：307</li>
+<li>重定向的时候，URL会发生变化：302</li>
+</ul>
+</li>
+</ul>
+<h2 id="7、Cookie、Session"><a href="#7、Cookie、Session" class="headerlink" title="7、Cookie、Session"></a>7、Cookie、Session</h2><h3 id="7-1、会话"><a href="#7-1、会话" class="headerlink" title="7.1、会话"></a>7.1、会话</h3><p><strong>会话</strong>：用户打开一个浏览器，点击了很多超链接，访问多个web资源，关闭浏览器</p>
+<p><strong>有状态会话</strong>：一个同学来过教室，下次再来，我们知道这个同学曾经来过</p>
+<p><strong>一个网站，怎么证明你来过？</strong></p>
+<p>客户端        服务端</p>
+<ol>
+<li>服务端给客户端一个信件，客户端下次访问服务端带着信件即可</li>
+<li>服务器登记你来过了，下次你来的时候匹配你</li>
+</ol>
+<h3 id="7-2、保存会话的两种技术"><a href="#7-2、保存会话的两种技术" class="headerlink" title="7.2、保存会话的两种技术"></a>7.2、保存会话的两种技术</h3><h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><ul>
+<li>客户端技术（响应，请求）</li>
+</ul>
+<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><ul>
+<li>服务器技术，利用这个技术，可以保存用户的会话信息</li>
+</ul>
+<p>常见场景：网站登录后，下一次不用再登录</p>
+<h3 id="7-3、Cookie"><a href="#7-3、Cookie" class="headerlink" title="7.3、Cookie"></a>7.3、Cookie</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-10_10-27-41.png"></p>
+<ol>
+<li>从请求中拿到cookie信息</li>
+<li>服务器响应给客户端cookie</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">    resp.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">    PrintWriter out = resp.getWriter();</span><br><span class="line"></span><br><span class="line">    Cookie[] cookies = req.getCookies();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cookies.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        out.println(<span class="string">&quot;The last time you visit our website is:&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cookie.getName().equals(<span class="string">&quot;time&quot;</span>)) &#123;</span><br><span class="line">                <span class="keyword">long</span> l = Long.parseLong(cookie.getValue());</span><br><span class="line">                Date date = <span class="keyword">new</span> Date(l);</span><br><span class="line">                out.println(date);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        out.println(<span class="string">&quot;This is your first time to visit our website&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;time&quot;</span>, System.currentTimeMillis() + <span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    resp.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>cookie一般会保存在本地中</p>
+<p><strong>一个网站cookie是否存在上限</strong></p>
+<ul>
+<li>一个Cookie只能保存一个信息</li>
+<li>一个web站点可以给浏览器发送多个cookie，最多放20个</li>
+<li>300个cookie浏览器上限</li>
+<li>cookie大小有限制</li>
+</ul>
+<p><strong>删除cookie</strong></p>
+<ul>
+<li>不设置有效期，关闭浏览器，自动失效</li>
+<li>设置有效期，时间为0</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;time&quot;</span>, System.currentTimeMillis() + <span class="string">&quot;&quot;</span>);</span><br><span class="line">    cookie.setMaxAge(<span class="number">0</span>);</span><br><span class="line">    resp.addCookie(cookie);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4、Session（重点）"><a href="#7-4、Session（重点）" class="headerlink" title="7.4、Session（重点）"></a>7.4、Session（重点）</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-10_10-30-02.png"></p>
+<p>什么是Session</p>
+<ul>
+<li>服务器会给每个用户创建一个Session对象</li>
+<li>一个session独占一个浏览器，只要浏览器没有关闭，这个session就存在</li>
+<li>用户登陆之后，整个网站都可以访问了-&gt;保存用户信息</li>
+</ul>
+<p>session和cookie的区别</p>
+<ul>
+<li>cookie是把用户的数据写给用户的浏览器，浏览器保存</li>
+<li>session把用户的数据写到用户独占session中，服务器端保存</li>
+<li>session对象由服务器创建</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>保存一个登录用户的信息</li>
+<li>购物车信息</li>
+<li>在整个网站中，经常会使用的数据保存在session</li>
+</ul>
+<p>会话自动过期：web.xml中设置</p>
+<h2 id="8、JSP"><a href="#8、JSP" class="headerlink" title="8、JSP"></a>8、JSP</h2><h3 id="8-1、什么是JSP"><a href="#8-1、什么是JSP" class="headerlink" title="8.1、什么是JSP"></a>8.1、什么是JSP</h3><p>Java Server Pages：Java服务端页面，也和Servlet一样，用于开发动态web</p>
+<p>最大的特点：</p>
+<ul>
+<li>写JSP就像在写HTML</li>
+<li>区别：<ul>
+<li>HTML只给用户提供静态的数据</li>
+<li>JSP页面可以嵌入代码，为用户提供动态数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2、JSP原理"><a href="#8-2、JSP原理" class="headerlink" title="8.2、JSP原理"></a>8.2、JSP原理</h3><ul>
+<li><p>代码层面没有问题</p>
+</li>
+<li><p>服务器内部工作</p>
+<p>Tomcat中有一个work目录</p>
+<p>IDEA中使用Tomcat的会在IDEA的Tomcat中生成一个work目录</p>
+<p>发现页面变成了Java</p>
+</li>
+</ul>
+<p><strong>浏览器向服务器发送请求，不管访问什么资源，其实都是在访问Servlet</strong></p>
+<p>JSP最终会转成Java类</p>
+<p><strong>JSP本质上就是一个Servlet</strong></p>
+<ol>
+<li>判断请求</li>
+<li>内置一些对象</li>
+<li>输出页面前增加的代码</li>
+<li>以上的这些个对象都可以在JSP页面中直接使用</li>
+</ol>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-10_20-29-58.png"></p>
+<p>在JSP页面中，只要是Java代码，就会原封不动地输出</p>
+<p>如果是HTML代码，就会被转换为<code>out.write();</code>这样的格式输出到前端</p>
+<h3 id="8-3、JSP基础语法"><a href="#8-3、JSP基础语法" class="headerlink" title="8.3、JSP基础语法"></a>8.3、JSP基础语法</h3><p>任何语言都有自己的语法，Java中有。JSP作为Java技术的一种应用，它拥有一些自己扩充的语法</p>
+<h4 id="JSP表达式"><a href="#JSP表达式" class="headerlink" title="JSP表达式"></a><strong>JSP表达式</strong></h4><p>作用：将程序的输出，输出到客户端</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= <span class="keyword">new</span> java.util.Date()%&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="JSP脚本片段"><a href="#JSP脚本片段" class="headerlink" title="JSP脚本片段"></a><strong>JSP脚本片段</strong></h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    num += i;</span><br><span class="line">&#125;</span><br><span class="line">out.println(<span class="string">&quot;&lt;h3&gt;Num=&quot;</span> + num + <span class="string">&quot;&lt;/h3&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="脚本片段的再实现"><a href="#脚本片段的再实现" class="headerlink" title="脚本片段的再实现"></a><strong>脚本片段的再实现</strong></h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    %&gt;</span><br><span class="line">&lt;p&gt;&lt;%=i%&gt;&lt;/p&gt;</span><br><span class="line">&lt;%</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="JSP声明"><a href="#JSP声明" class="headerlink" title="JSP声明"></a>JSP声明</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;111&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>JSP声明：会被编译到JSP生成的Java类中，其他的会被生成到_jspService类中</p>
+<p>在JSP中，嵌入Java代码即可</p>
+<p>JSP的注释不会再客户端显示，但可以看到HTML注释</p>
+<h3 id="8-4、JSP指令"><a href="#8-4、JSP指令" class="headerlink" title="8.4、JSP指令"></a>8.4、JSP指令</h3><h3 id="8-5、9大内置对象"><a href="#8-5、9大内置对象" class="headerlink" title="8.5、9大内置对象"></a>8.5、9大内置对象</h3><ul>
+<li>PageContext 存东西</li>
+<li>Request 存东西</li>
+<li>Response</li>
+<li>Session 存东西</li>
+<li>Application [ServletContext] 存东西</li>
+<li>config [ServletConfig]</li>
+<li>out</li>
+<li>page 几乎不用</li>
+<li>exception</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pageContext.setAttribute(<span class="string">&quot;name1&quot;</span>,<span class="string">&quot;1&quot;</span>);<span class="comment">//数据只在一个页面有效</span></span><br><span class="line">session.setAttribute(<span class="string">&quot;name2&quot;</span>,<span class="string">&quot;2&quot;</span>);<span class="comment">//数据只在一次会话中有效，从打开浏览器到关闭浏览器</span></span><br><span class="line">application.setAttribute(<span class="string">&quot;name3&quot;</span>,<span class="string">&quot;3&quot;</span>);<span class="comment">//数据只在一次服务器中有效，从打开服务器到关闭服务器</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;name4&quot;</span>,<span class="string">&quot;4&quot;</span>);<span class="comment">//数据只在一次请求中有效，请求转发会携带这个数据</span></span><br></pre></td></tr></table></figure>
+
+<p>request：客户端向服务器发送请求，产生的数据用户看完就没用了</p>
+<p>session：客户端向服务器发送请求，产生的数据用户用完还有用</p>
+<p>application：客户端向服务器发送请求，产生的数据用户用完了，其他用户还可以用</p>
+<h3 id="8-6、JSP标签、JSTL标签、EL表达式"><a href="#8-6、JSP标签、JSTL标签、EL表达式" class="headerlink" title="8.6、JSP标签、JSTL标签、EL表达式"></a>8.6、JSP标签、JSTL标签、EL表达式</h3><p>EL表达式：${}</p>
+<ul>
+<li>获取数据</li>
+<li>执行运算</li>
+<li>获取web开发的常用对象</li>
+</ul>
+<p>JSP标签</p>
+<p>JSTL</p>
+<p><strong>JSTL标签库的使用就是为了弥补HTML标签的不足</strong>：它自定了许多标签，可供我们使用，标签的功能和Java一样</p>
+<ul>
+<li>核心标签</li>
+<li>格式化标签</li>
+<li>SQL标签</li>
+<li>XML标签</li>
+</ul>
+<p><strong>JSTL标签库使用步骤</strong></p>
+<ol>
+<li>引入对应的taglib</li>
+<li>使用其中的方法</li>
+<li>在Tomcat需要引入jstl的包，否则可能会报错</li>
+</ol>
+<h2 id="9、JavaBean"><a href="#9、JavaBean" class="headerlink" title="9、JavaBean"></a>9、JavaBean</h2><p>实体类</p>
+<p>JavaBean有特定的写法</p>
+<ul>
+<li>必须要有一个无参构造</li>
+<li>属性必须私有化</li>
+<li>必须有相应的封装</li>
+</ul>
+<p>一般用来和数据库的字段做映射 ORM</p>
+<p>ORM：对象关系映射</p>
+<ul>
+<li>表——类</li>
+<li>字段——属性</li>
+<li>行记录——对象</li>
+</ul>
+<h2 id="10、MVC三层结构"><a href="#10、MVC三层结构" class="headerlink" title="10、MVC三层结构"></a>10、MVC三层结构</h2><p>什么是MVC：Model View Controller 模型、视图、控制器</p>
+<h3 id="10-1、早些年"><a href="#10-1、早些年" class="headerlink" title="10.1、早些年"></a>10.1、早些年</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-12_09-51-25.png"></p>
+<p>用户直接访问控制层，控制层就可以直接操作数据库</p>
+<p>弊端：程序十分臃肿，不利于维护</p>
+<h3 id="10-2、MVC三层架构"><a href="#10-2、MVC三层架构" class="headerlink" title="10.2、MVC三层架构"></a>10.2、MVC三层架构</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-12_09-59-29.png"></p>
+<p>Model</p>
+<ul>
+<li>业务处理：业务逻辑（Service）</li>
+<li>数据持久层：CRUD（DAO）</li>
+</ul>
+<p>View</p>
+<ul>
+<li>展示数据</li>
+<li>提供链接发起Servlet请求</li>
+</ul>
+<p>Controller（Servlet）</p>
+<ul>
+<li>接收用户的请求：request</li>
+<li>交给业务层处理对应的代码</li>
+<li>控制视图的跳转</li>
+</ul>
+<h2 id="11、Filter"><a href="#11、Filter" class="headerlink" title="11、Filter"></a>11、Filter</h2><p>Filter：过滤器，用来过滤网站的数据</p>
+<ul>
+<li>处理中文乱码</li>
+<li>登录验证</li>
+</ul>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-12_10-52-29.png"></p>
+<ol>
+<li><p>导包</p>
+</li>
+<li><p>编写过滤器</p>
+<ol>
+<li>导包不要错</li>
+<li>实现Filter接口，重写对应的方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharacterEncodingFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Program start&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        request.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        response.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//        System.out.println(&quot;before&quot;);</span></span><br><span class="line">        filterChain.doFilter(request,response);</span><br><span class="line">        <span class="comment">//        System.out.println(&quot;after&quot;);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Program destroy&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在xml中配置过滤器</li>
+</ol>
+</li>
+</ol>
+<h2 id="12、Listener"><a href="#12、Listener" class="headerlink" title="12、Listener"></a>12、Listener</h2><p>实现一个监听器的接口</p>
+<ol>
+<li>编写一个监听器</li>
+<li>配置监听器</li>
+<li>看情况是否使用</li>
+</ol>
+<h2 id="13、过滤器、监听器的常见应用"><a href="#13、过滤器、监听器的常见应用" class="headerlink" title="13、过滤器、监听器的常见应用"></a>13、过滤器、监听器的常见应用</h2><p>监听器：GUI编程中经常使用</p>
+<p>用户登录之后才能进入主页，用户注销后就不能进入主页了</p>
+<ol>
+<li><p>用户登录后，向Session中放入用户的数据</p>
+</li>
+<li><p>进入主页的时候要判断用户是否已经登录，要求：在过滤器中实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">    HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">    HttpServletResponse response = (HttpServletResponse) servletResponse;</span><br><span class="line"></span><br><span class="line">    Object session = request.getSession().getAttribute(String.valueOf(Constant.USER_SESSION));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (session == <span class="keyword">null</span>) &#123;</span><br><span class="line">        response.sendRedirect(<span class="string">&quot;/ERROR.jsp&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="14、JDBC回顾"><a href="#14、JDBC回顾" class="headerlink" title="14、JDBC回顾"></a>14、JDBC回顾</h2><p>什么是JDBC：Java连接数据库</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-12_20-29-01.png"></p>
+<p>需要jar包的支持：</p>
+<ul>
+<li>java.sql</li>
+<li>javax.sql</li>
+<li>mysql-xxxxx</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">    String url = <span class="string">&quot;jdbc:mysql://rm-bp1s254s2y20o03736o.mysql.rds.aliyuncs.com:3306/jdbc?useUnicode=true&amp;characterEncoding=utf-8&quot;</span>;</span><br><span class="line">    String username = <span class="string">&quot;dogegg&quot;</span>;</span><br><span class="line">    String password = <span class="string">&quot;zxia09ZTC!@&quot;</span>;</span><br><span class="line"></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">    Statement statement = connection.createStatement();</span><br><span class="line">    String sql = <span class="string">&quot;select * from users&quot;</span>;</span><br><span class="line">    ResultSet resultSet = statement.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;id=&quot;</span> + resultSet.getObject(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;name=&quot;</span> + resultSet.getObject(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;password=&quot;</span> + resultSet.getObject(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;email=&quot;</span> + resultSet.getObject(<span class="string">&quot;email&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;birthday=&quot;</span> + resultSet.getObject(<span class="string">&quot;birthday&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    resultSet.close();</span><br><span class="line">    statement.close();</span><br><span class="line">    connection.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JDBC固定步骤</p>
+<ol>
+<li>加载驱动</li>
+<li>连接数据库</li>
+<li>向数据库发送SQL对象</li>
+<li>编写SQL语句</li>
+<li>执行SQL</li>
+<li>关闭连接</li>
+</ol>
+<h2 id="15、JDBC事务"><a href="#15、JDBC事务" class="headerlink" title="15、JDBC事务"></a>15、JDBC事务</h2><p>要么都成功，要么都失败</p>
+<p>ACID：保证数据的安全</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">开启事务</span><br><span class="line">事务提交</span><br><span class="line">事务回滚</span><br><span class="line">关闭事务</span><br></pre></td></tr></table></figure>
+
+<p><strong>Junit单元测试</strong></p>
+<p>简单使用</p>
+<p>@Test注解只在方法上有效，只要方法加了这个注解，就可以直接运行</p>
+
                 
             </div>
             <hr/>
