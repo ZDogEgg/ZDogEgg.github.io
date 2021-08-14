@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>MyBatis</title>
+      <link href="2021/08/14/mybatis/"/>
+      <url>2021/08/14/mybatis/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SMBMS</title>
+      <link href="2021/08/13/smbms/"/>
+      <url>2021/08/13/smbms/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SMBMS"><a href="#SMBMS" class="headerlink" title="SMBMS"></a>SMBMS</h1><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-13_14-02-48.png"></p><p>数据库</p><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-13_14-06-38.png"></p><h2 id="项目如何搭建"><a href="#项目如何搭建" class="headerlink" title="项目如何搭建"></a>项目如何搭建</h2><p>考虑使用Maven</p><h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><ol><li><p>搭建一个Maven web项目</p></li><li><p>配置Tomcat</p></li><li><p>测试项目是否能够跑起来</p></li><li><p>导入项目中会碰到的jar包</p></li><li><p>创建项目包结构</p></li><li><p>编写实体类</p><p>ORM映射</p></li><li><p>编写基础公共类</p><ol><li>数据库配置文件</li><li>编写数据的的公共类</li><li>编写字符编码过滤器</li></ol></li><li><p>导入静态资源</p></li></ol><h2 id="登录功能实现"><a href="#登录功能实现" class="headerlink" title="登录功能实现"></a>登录功能实现</h2><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-08-13_14-53-29.png"></p><ol><li>编写前端页面</li><li>设置首页</li><li>编写DAO蹭用户登录的接口</li><li>编写DAO接口的实现类</li><li>业务层接口</li><li>业务层实现类</li><li>编写Servlet</li><li>注册Servlet</li><li>测试访问</li></ol><h2 id="登录功能优化"><a href="#登录功能优化" class="headerlink" title="登录功能优化"></a>登录功能优化</h2><p>注销功能：移除Session，返回登录页面</p><p>登录拦截：过滤器</p><h2 id="密码修改"><a href="#密码修改" class="headerlink" title="密码修改"></a>密码修改</h2><ol><li>导入前端素材</li><li>写项目，建议从底层往上写</li><li>UserDAO接口</li><li>UserDAO实现类</li><li>UserService接口</li><li>UserService实现类</li><li>提取方法，实现复用</li><li>测试</li></ol><h2 id="使用Ajax优化"><a href="#使用Ajax优化" class="headerlink" title="使用Ajax优化"></a>使用Ajax优化</h2><ol><li>alibaba的fastJSON</li><li>javax</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>对象与类</title>
       <link href="2021/08/07/dui-xiang-yu-lei/"/>
       <url>2021/08/07/dui-xiang-yu-lei/</url>
