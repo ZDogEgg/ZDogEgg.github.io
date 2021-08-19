@@ -8,9 +8,21 @@
       <link href="2021/08/19/spring5/"/>
       <url>2021/08/19/spring5/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="1、Spring"><a href="#1、Spring" class="headerlink" title="1、Spring"></a>1、Spring</h1><h2 id="1-1、简介"><a href="#1-1、简介" class="headerlink" title="1.1、简介"></a>1.1、简介</h2><ul><li>2002年，首次推出了Spring框架的雏形：Interface21框架</li><li>Spring框架以Interface21框架为基础，与2004年3月24日，发布了1.0版本</li><li>Spring理念：使现有的技术更加容易使用，本身是个大杂烩，整合了现有的技术框架</li></ul><ul><li>SSH：Struct2 + Spring + Hibernate</li><li>SSM：SpringMVC + Spring +MyBatis</li></ul><p>官网：<a href="https://spring.io/">https://spring.io/</a></p><h2 id="1-2、优点"><a href="#1-2、优点" class="headerlink" title="1.2、优点"></a>1.2、优点</h2><ul><li>Spring是一个开源的免费的框架</li><li>是一个轻量级的、非入侵式的框架</li><li>控制反转（IOC）、面向切面编程（AOP）</li><li>支持事务的处理，对框架整合的支持</li></ul><p><strong>总结一句话：Spring就是一个轻量级的反转控制和面向切面编程的框架</strong></p>]]></content>
       
       
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
       
     </entry>
     
