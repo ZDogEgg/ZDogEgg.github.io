@@ -1,0 +1,1528 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Redis, ZDogEgg&#39;s Blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Redis | ZDogEgg&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">ZDogEgg&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZDogEgg&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Redis</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                编程
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-09-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="NoSql概述"><a href="#NoSql概述" class="headerlink" title="NoSql概述"></a>NoSql概述</h2><h3 id="为什么要用NoSql"><a href="#为什么要用NoSql" class="headerlink" title="为什么要用NoSql"></a>为什么要用NoSql</h3><blockquote>
+<p>单机MySQL的年代</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-29_22-16-18.png"></p>
+<p>一个基本的网站访问量一般不会太大，单个数据库完全足够</p>
+<p>更多的使用静态网页，服务器没有太大的压力</p>
+<p>整个网站的瓶颈：</p>
+<ol>
+<li>数据量如果太大，一个机器放不下了</li>
+<li>数据的索引，一个机器内存放不下</li>
+<li>访问量（读写混合），一个服务器承受不了</li>
+</ol>
+<p>只要开始出现以上三个情况之一，那必须晋级</p>
+<blockquote>
+<p>Memcached（缓存）+MySQL+垂直拆分</p>
+</blockquote>
+<p>网站80%的情况都是在读，每次都要去查数据库就十分麻烦，所以我们希望减轻数据库的压力，可以用缓存来保证效率</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-29_22-31-08.png"></p>
+<p>发展过程：优化数据结构和索引-》文件缓存-》Memcached</p>
+<blockquote>
+<p>分库分表+水平拆分+MySQL集群</p>
+</blockquote>
+<p>本质：数据库读写</p>
+<p>早些年MyISAM：表锁，十分影响效率，高并发会出现严重的锁问题</p>
+<p>InnoDB：行锁</p>
+<p>慢慢地就开始分库分表来解决写的压力</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-29_22-47-27.png"></p>
+<blockquote>
+<p>最近的年代</p>
+</blockquote>
+<p>MySQL关系型数据库不够用。数据量很多，变化快</p>
+<p>MySQL使用一些较大的文件。数据库表很大，效率降低。如果有一种数据库来专门处理这种数据，MySQL压力就会变小</p>
+<p>大数据的压力下，表几乎无法更改</p>
+<blockquote>
+<p>目前一个基本的互联网项目</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-29_23-02-52.png"></p>
+<blockquote>
+<p>为什么要用NoSQL</p>
+</blockquote>
+<p>用户的个人信息，社交网络，地理位置，用户自己产生的数据，用户的日志等等爆发式增长</p>
+<p>这时我们需要使用NoSQL数据库，可以很好地处理以上情况</p>
+<h3 id="什么是NoSQL"><a href="#什么是NoSQL" class="headerlink" title="什么是NoSQL"></a>什么是NoSQL</h3><p>Not Only SQL</p>
+<p>泛指非关系型数据库</p>
+<p>随着web2.0的互联网诞生，传统的关系型数据库很难对付，尤其是超大规模的高并发的社区。暴露出来很多难以克服的问题</p>
+<p>关系型数据库：表格、行、列（POI）</p>
+<p>很多数据类型的存储不需要一个固定的格式，不需要多余的操作就可以横向扩展</p>
+<blockquote>
+<p>NoSQL特点</p>
+</blockquote>
+<ol>
+<li><p>方便扩展（数据之间无关系）</p>
+</li>
+<li><p>大数据量高性能（是一种细粒度的缓存）</p>
+</li>
+<li><p>数据类型多样（不需要事先设计数据库，随取随用）</p>
+</li>
+<li><p>传统RDBMS和NoSQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">传统RDBMS</span><br><span class="line">- 结构化组织</span><br><span class="line">- SQL</span><br><span class="line">- 数据和关系都在单独的表中</span><br><span class="line">- 数据定义语言</span><br><span class="line">- 严格的一致性</span><br><span class="line">- 基础的事务</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NoSQL</span><br><span class="line">- 不仅仅是数据</span><br><span class="line">- 没有固定的查询语言</span><br><span class="line">- 键值对存储，列存储，文档存储，图形数据库</span><br><span class="line">- 最终一致性</span><br><span class="line">- CAP定理和BASE（异地多活）</span><br><span class="line">- 高性能，高可用，高可扩展性</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>了解：3V+3高</p>
+<p>3V：海量，多样，实时</p>
+<p>3高：高并发，高可拓，高性能</p>
+</blockquote>
+<p>真正在公司中的时间：NoSQL+RDBMS一起使用才是最强的</p>
+</li>
+</ol>
+<h3 id="阿里巴巴演进分析"><a href="#阿里巴巴演进分析" class="headerlink" title="阿里巴巴演进分析"></a>阿里巴巴演进分析</h3><p>思考问题：这么多东西难道在一个数据库中吗？</p>
+<p>任何一家互联网公司，都不可能只是简简单单让用户能用就好了</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-30_15-29-14.png"></p>
+<p>没有什么是加一层解决不了的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#商品的基本信息</span></span><br><span class="line">名称、价格、商家信息</span><br><span class="line">关系型数据库就解决了</span><br><span class="line"><span class="comment">#商品的描述、评论（文字比较多）</span></span><br><span class="line">文档型数据库中，MongoDB</span><br><span class="line"><span class="comment">#图片</span></span><br><span class="line">分布式文件系统，FastDFS</span><br><span class="line"><span class="comment">#商品关键字（搜索）</span></span><br><span class="line">搜索引擎</span><br><span class="line"><span class="comment">#商品热门波段信息</span></span><br><span class="line">内存数据库，Redis</span><br><span class="line"><span class="comment">#商品的交易，外部的支付接口</span></span><br><span class="line">三方应用</span><br></pre></td></tr></table></figure>
+
+<p>要知道，一个简单地网页背后的技术一定不是想象的那么简单</p>
+<p>大型互联网应用问题：</p>
+<ul>
+<li>数据类型太多</li>
+<li>数据源繁多。经常重构</li>
+<li>数据要改造，需要大面积改造</li>
+</ul>
+<p>解决问题：UDSL（统一数据服务平台）</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-09-30_15-43-15.png"></p>
+<p>以上都是NoSQL入门概述，不仅能提高知识，还能帮助了解大厂工作内容</p>
+<h3 id="NoSQL的四大分类"><a href="#NoSQL的四大分类" class="headerlink" title="NoSQL的四大分类"></a>NoSQL的四大分类</h3><p><strong>KV键值对：</strong></p>
+<ul>
+<li>新浪：Redis</li>
+<li>美团：Redis+Tair</li>
+<li>阿里、百度：Redis+Memcached</li>
+</ul>
+<p><strong>文档型数据库：</strong></p>
+<ul>
+<li>MongoDB<ul>
+<li>是一个基于分布式文件存储的数据库，C++编写，主要用来处理大量的文档</li>
+<li>是一个介于关系型数据库和非关系型数据库的产品。MongoDB是非关系型数据库中功能最丰富，最像关系型数据库的。</li>
+</ul>
+</li>
+<li>ConthDB</li>
+</ul>
+<p><strong>列存储数据库：</strong></p>
+<ul>
+<li>HBase</li>
+<li>分布式文件系统</li>
+</ul>
+<p><strong>图形关系数据库：</strong></p>
+<ul>
+<li>不是存图形，放的是关系，比如：朋友圈社交网络，广告推荐</li>
+<li>Neo4j</li>
+</ul>
+<h2 id="Redis入门"><a href="#Redis入门" class="headerlink" title="Redis入门"></a>Redis入门</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>Redis是什么</p>
+</blockquote>
+<p>Redis，即远程字典服务</p>
+<p>是当下最热门的NoSQL技术之一，也被人们称之为结构化数据库</p>
+<blockquote>
+<p>Redis能做什么</p>
+</blockquote>
+<ol>
+<li>内存存储，持久化。内存是断电即失，所以说持久化很重要（RDB、AOF）</li>
+<li>效率高，可以用于高速缓存</li>
+<li>发布订阅系统</li>
+<li>地图信息分析</li>
+<li>计时器、计数器（浏览量）</li>
+</ol>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<ol>
+<li>多样的数据类型</li>
+<li>持久化</li>
+<li>集群</li>
+<li>事务</li>
+</ol>
+<blockquote>
+<p>学习中要用到的东西</p>
+</blockquote>
+<ol>
+<li>官网</li>
+<li>Redis中文网</li>
+</ol>
+<p>Redis推荐在Linux服务器上搭建，基于Linux学习</p>
+<h3 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h3><p>默认端口号：6379</p>
+<p>Windows下使用确实简单，但是Redis推荐我们使用Linux开发</p>
+<h3 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h3><ol>
+<li><p>下载安装包<code>redis-6.2.5.tar.gz</code></p>
+</li>
+<li><p>解压Redis的安装包 程序在opt下</p>
+</li>
+<li><p>进入解压后的文件，可以看到Redis的配置文件</p>
+</li>
+<li><p>基本的环境安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+<li><p>Redis的默认安装路径：<code>usr/local/bin</code></p>
+</li>
+<li><p>将Redis配置文件复制到当前目录下</p>
+</li>
+<li><p>Redis默认不是后台启动的，修改配置文件</p>
+</li>
+<li><p>启动Redis服务</p>
+</li>
+<li><p>使用Redis客户端进行连接</p>
+</li>
+<li><p>查看Redis的进程是否开启</p>
+</li>
+<li><p>如何关闭Redis服务？（shutdown）</p>
+</li>
+<li><p>再次查看进程是否存在</p>
+</li>
+<li><p>后面会使用单机多Redis集群</p>
+</li>
+</ol>
+<h3 id="测试性能"><a href="#测试性能" class="headerlink" title="测试性能"></a>测试性能</h3><p>redis-benchmark是一个压力测试工具</p>
+<p><code>redis-benchmark -h localhost -p 6379 -c 100 -n 10000</code></p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>Redis默认有16个数据库，默认使用的是第0个数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select n//切换数据库</span><br><span class="line">keys *//查看数据库所有的key</span><br><span class="line">flushdb//清空当前数据库</span><br><span class="line">flushall//清空全部数据库</span><br></pre></td></tr></table></figure>
+
+<p>为什么Redis是6379？（了解一下即可）</p>
+<blockquote>
+<p>Redis是单线程的！</p>
+</blockquote>
+<p>Redis是很快的。官方表示，Redis基于内存操作，CPU不是Redis的性能瓶颈，Redis的瓶颈是根据机器的内存和网络的带宽。既然能用单线程实现，那就用单线程。</p>
+<p>Redis是C语言写的。官方数据为100000+的QPS，这个不必Memcached差</p>
+<p><strong>Redis为什么单线程还这么快？</strong></p>
+<ol>
+<li>误区1：高性能的服务器一定是多线程的？</li>
+<li>误区2：多线程（CPU上下文会切换）一定比单线程效率高？</li>
+</ol>
+<p>核心：Redis将所有数据放在内存中，所以说使用单线程操作效率最高。对于内存来说，如果没有上下文切换效率就是最高的。多次读写都在一个CPU上。</p>
+<h2 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h2><p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作<strong>数据库</strong>、<strong>缓存</strong>和<strong>消息中间件</strong>。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。</p>
+<h3 id="Redis-Key"><a href="#Redis-Key" class="headerlink" title="Redis-Key"></a>Redis-Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys *//查看所有key</span><br><span class="line"><span class="built_in">set</span> xxx xxx//<span class="built_in">set</span> key</span><br><span class="line">EXISTS xxx//判断当前key是否存在</span><br><span class="line">move xxx 1//移除当前的key</span><br><span class="line">EXPIRE xxx t//设置当前key的过期时间</span><br><span class="line">ttl xxx//查看当前key的剩余时间</span><br><span class="line"><span class="built_in">type</span> xxx//查看当前key的数据类型</span><br></pre></td></tr></table></figure>
+
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key1 v1</span><br><span class="line">get key1</span><br><span class="line">keys *</span><br><span class="line">EXISTS key1</span><br><span class="line">APPEND key1 v2//追加字符串，如果key不存在，就新建</span><br><span class="line">STRLEN key1//获取字符串长度</span><br><span class="line"></span><br><span class="line">incr key2</span><br><span class="line">decr key2</span><br><span class="line">INCRBY key2 step(步长)</span><br><span class="line">DECRBY key2 step</span><br><span class="line"></span><br><span class="line">GETRANGE key1 start end</span><br><span class="line">GETRANGE key1 0 -1//获取全部字符串</span><br><span class="line">SETRANGE key2 1 xx//替换字符串</span><br><span class="line"></span><br><span class="line">setex mykey value//如果mykey不存在，创建</span><br><span class="line">setnx mykey value//如果mykey存在，创建失败</span><br><span class="line"></span><br><span class="line">mset k1 v1 k2 v2 k3 v3//批量创建</span><br><span class="line">mget k1 k2 k3</span><br><span class="line">msetnx k1 v1 k3 v4//setnx是一个原子性的操作，要么一起成功，要么一起失败</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> user:1 &#123;name:dogegg,age:3&#125;<span class="comment">#设置对象</span></span><br><span class="line"></span><br><span class="line">getset<span class="comment">#先get再set</span></span><br><span class="line">getset db value<span class="comment">#如果不存在值，返回nil，如果存在值，获取原来的值并设置新值</span></span><br></pre></td></tr></table></figure>
+
+<p>String类型应用场景：</p>
+<ul>
+<li>字符串</li>
+<li>计数器</li>
+<li>统计多单位的数量</li>
+<li>对象缓存存储</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>在Redis中，能把list用成栈、队列、阻塞队列</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">LPUSH list one<span class="comment">#将值插到列表头部</span></span><br><span class="line">LRANGE list 0 -1<span class="comment">#获取list中的值</span></span><br><span class="line">RPUSH list two<span class="comment">#将值插到列表尾部</span></span><br><span class="line"></span><br><span class="line">LPOP<span class="comment">#移除</span></span><br><span class="line">RPOP</span><br><span class="line"></span><br><span class="line">Lindex list 1<span class="comment">#通过下标获取值</span></span><br><span class="line"></span><br><span class="line">Llen list<span class="comment">#获取长度</span></span><br><span class="line"></span><br><span class="line">Lrem list 2 three<span class="comment">#移除某个具体元素</span></span><br><span class="line"></span><br><span class="line">ltrim list 1 2<span class="comment">#截取部分</span></span><br><span class="line"></span><br><span class="line">rpoplpush mylist myanotherlist<span class="comment">#移除某个元素，将它添加到另一个list</span></span><br><span class="line"></span><br><span class="line">Linsert</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小结</p>
+</blockquote>
+<ul>
+<li>实际上是一个链表，left、right都可以插入值</li>
+<li>如果key不存在，创建新的链表</li>
+<li>如果key存在，新增内容</li>
+<li>如果移除了所有值，空链表，也代表不存在</li>
+<li>在两边插入或者改动值，效率最高。中间元素相对来说效率会低一点</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set中的值是不能重复的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Sadd myset <span class="string">&quot;hello&quot;</span></span><br><span class="line">Smembers myset<span class="comment">#所有元素</span></span><br><span class="line">Sismember myset xxx<span class="comment">#元素是否存在</span></span><br><span class="line">scard myset<span class="comment">#获取set集合中的内容元素个数</span></span><br><span class="line">srem myset <span class="string">&quot;hello&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span>是无需不重复集合</span><br><span class="line">SRANDMEMBER myset<span class="comment">#随机获取一个元素</span></span><br><span class="line"></span><br><span class="line">spop myset<span class="comment">#随机移除元素</span></span><br><span class="line"></span><br><span class="line">将一个指定的值移动到指定的集合中</span><br><span class="line">smove myset myset2 <span class="string">&quot;kuangshen&quot;</span></span><br><span class="line"></span><br><span class="line">- 差集</span><br><span class="line">- 交集</span><br><span class="line">- 并集</span><br><span class="line">SDIFF key1 key2<span class="comment">#差集</span></span><br><span class="line">SINTER key1 key2<span class="comment">#交集</span></span><br><span class="line">SUNION key1 key2<span class="comment">#并集</span></span><br></pre></td></tr></table></figure>
+
+<p>共同关注，共同爱好</p>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>Map集合，key-Map集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Hset myhash field1 aaa</span><br><span class="line">Hget myhash field1</span><br><span class="line">Hmset myhash field1 hello field2 wild</span><br><span class="line">Hmget myhash field1 field2</span><br><span class="line">Hgetall myhash</span><br><span class="line">Hdel myhash field2</span><br><span class="line"></span><br><span class="line">Hlen myhash</span><br><span class="line">Hexists myhash field1<span class="comment">#判断是否存在</span></span><br><span class="line">Hkeys myhash</span><br><span class="line">hvals myhash</span><br><span class="line"></span><br><span class="line">Hincrby</span><br></pre></td></tr></table></figure>
+
+<p>Hash存储变更的数据，尤其是用户信息之类的，经常变动的信息。Hash更适合于对象的存储，String更加适合字符串存储</p>
+<h3 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h3><p>在Set的基础上，增加了一个值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Zadd myset 1 one</span><br><span class="line">Zadd myset 2 two 3 three</span><br><span class="line">ZRANGE myset 0 -1</span><br><span class="line"></span><br><span class="line">ZRANGEBYSCORE salary -inf +inf</span><br><span class="line"></span><br><span class="line">Zrem salary xiaohong</span><br><span class="line">zcard salary<span class="comment">#查看多少元素</span></span><br><span class="line">Zcount </span><br></pre></td></tr></table></figure>
+
+<p>其余的一些API，通过我们的学习，剩下的如果工作中有需要，这个时候可以去看看官网</p>
+<h2 id="三种特殊数据类型"><a href="#三种特殊数据类型" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h2><h3 id="Geospatial地理位置"><a href="#Geospatial地理位置" class="headerlink" title="Geospatial地理位置"></a>Geospatial地理位置</h3><p>只有六个命令</p>
+<h4 id="GEOADD"><a href="#GEOADD" class="headerlink" title="GEOADD"></a>GEOADD</h4><p>添加地理位置</p>
+<p>规则：两极无法直接添加，我们一般会下载城市数据，通过java程序一次性导入</p>
+<p>参数：纬度、经度、名称</p>
+<h4 id="GEOPOS"><a href="#GEOPOS" class="headerlink" title="GEOPOS"></a>GEOPOS</h4><p>获取指定的经度和纬度：一定是一个坐标值</p>
+<h4 id="GEODIST"><a href="#GEODIST" class="headerlink" title="GEODIST"></a>GEODIST</h4><p>两人之间的距离</p>
+<h4 id="GEORADIUS"><a href="#GEORADIUS" class="headerlink" title="GEORADIUS"></a>GEORADIUS</h4><p>查看方圆半径内的地址</p>
+<p>获得指定数量的人</p>
+<h4 id="GEORADIUSMEMBER"><a href="#GEORADIUSMEMBER" class="headerlink" title="GEORADIUSMEMBER"></a>GEORADIUSMEMBER</h4><p>找出位于指定范围内的元素，中心点是由给定的位置元素决定</p>
+<h4 id="GEOHASH"><a href="#GEOHASH" class="headerlink" title="GEOHASH"></a>GEOHASH</h4><p>返回一个或多个位置元素</p>
+<p>GEO底层原理其实就是Zset。我们可以使用Zset来操作GEO</p>
+<h3 id="Hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h3><p>基数</p>
+<p>Redis2.8.9版本就更新了Hyperloglog数据结构</p>
+<p>是用来做基数统计的算法</p>
+<p>网页的UV（一个人访问一个网站多次，但还是算作一个人）</p>
+<p>传统的方式：Set保存用户的id，然后就可以统计Set中的元素数量作为标准判断。这个方式如果保存大量的id，就会比较麻烦。我们的目的是计数，而不是保存id</p>
+<p>Hyperloglog：占用的内存是固定的，2^64不同元素的计数，只需要12KB的内存。如果从内存角度来比较，Hyperloglog首选</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PFadd mykey a b c d e f g h i j</span><br><span class="line">PFCOUNT mykey</span><br><span class="line">PFadd mykey2 a j h i j k o</span><br><span class="line">PFMERGE mykey3 mykey mykey2</span><br></pre></td></tr></table></figure>
+
+<p>如果允许容错，就可以使用Hyperloglog，否则使用Set或其它</p>
+<h3 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p>位存储</p>
+<p>两个状态的，都可以使用Bitmap</p>
+<p>都是操作二进制位来进行记录，只有0和1两个状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用Bitmap记录周一到周日的打卡</span></span><br><span class="line">setbit sign 0 1</span><br><span class="line">setbit sign 1 0</span><br><span class="line">setbit sign 2 1</span><br><span class="line">setbit sign 3 0</span><br><span class="line">setbit sign 4 1</span><br><span class="line">setbit sign 5 1</span><br><span class="line">setbit sign 6 0</span><br><span class="line"><span class="comment">#查看某一天是否打卡</span></span><br><span class="line">getbit sign 6</span><br><span class="line"><span class="comment">#统计打卡天数</span></span><br><span class="line">bitcount sign</span><br></pre></td></tr></table></figure>
+
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化。在事务执行的过程中，会按照顺序执行。</p>
+<p>一次性、顺序性、排他性。执行一系列的命令</p>
+<p>Redis事务没有隔离级别的概念</p>
+<p>所有的命令在事务中并没有直接被执行，只有发起执行命令时才会被执行</p>
+<p>Redis单条命令保证原子性，但是事务不保证原子性</p>
+<p>Redis事务：</p>
+<ul>
+<li>开启事务（Multi）</li>
+<li>命令入队</li>
+<li>执行事务（Exec）</li>
+</ul>
+<blockquote>
+<p>正常执行事务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; get k2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; EXEC</span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) <span class="string">&quot;v2&quot;</span></span><br><span class="line">4) OK</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>放弃事务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; DISCARD<span class="comment">#取消事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k4<span class="comment">#事务队列中的命令都不会被执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编译型异常（命令有错），事务中所有的命令都不会被执行</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; getset k3</span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">&#x27;getset&#x27;</span> <span class="built_in">command</span></span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k5 v5</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">exec</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt; get k2<span class="comment">#所有命令都不会被执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行时异常（例如1/0），如果事务队列中存在语法型错误，那么执行命令的时候，其他命令是可以正常执行的，错误命令抛出异常</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">&quot;v1&quot;</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; incr k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; get k3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">exec</span></span><br><span class="line">1) (error) ERR value is not an <span class="built_in">integer</span> or out of range<span class="comment">#虽然第一条命令报错，但其他依旧正常执行成功了</span></span><br><span class="line">2) OK</span><br><span class="line">3) OK</span><br><span class="line">4) <span class="string">&quot;v3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>监控（watch）</p>
+</blockquote>
+<p>悲观锁：</p>
+<ul>
+<li>认为什么时候都会出问题，无论做什么都会加锁</li>
+</ul>
+<p>乐观锁：</p>
+<ul>
+<li>认为什么时候都不会出现问题，所以不会上锁。更新数据时去判断一下，在此期间是否有人修改过这个数据，version</li>
+<li>获取version</li>
+<li>更新时比较version</li>
+</ul>
+<blockquote>
+<p>Redis监视测试</p>
+</blockquote>
+<p>正常执行成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money<span class="comment">#监视money</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi<span class="comment">#事务正常结束</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; incrby out 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 80</span><br><span class="line">2) (<span class="built_in">integer</span>) 20</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; watch money<span class="comment">#watch可当做乐观锁操作</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379(TX)&gt; DECRBY money 10</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; incrby out 10</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379(TX)&gt; <span class="built_in">exec</span></span><br><span class="line">(nil)</span><br><span class="line"><span class="comment">#########################################</span></span><br><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;80&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 1000</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h2><p>通过Java操作Redis</p>
+<blockquote>
+<p>什么是Jedis？</p>
+</blockquote>
+<p>Java操作Redis中间件</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<ol>
+<li>导入对应的依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>编码测试</p>
+<ul>
+<li>连接数据库</li>
+<li>操作命令</li>
+<li>断开连接</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPing</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：PONG</p>
+</li>
+</ol>
+<h3 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h3><p>String</p>
+<p>List</p>
+<p>Set</p>
+<p>Hash</p>
+<p>Zset</p>
+<blockquote>
+<p>事务</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTX</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line">        jedis.flushDB();</span><br><span class="line">        JSONObject jsonObject = <span class="keyword">new</span> JSONObject();</span><br><span class="line">        jsonObject.put(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">        jsonObject.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;kuang&quot;</span>);</span><br><span class="line">        Transaction multi = jedis.multi();</span><br><span class="line">        String s = jsonObject.toJSONString();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            multi.set(<span class="string">&quot;user1&quot;</span>, s);</span><br><span class="line">            multi.set(<span class="string">&quot;user2&quot;</span>, s);</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">            multi.exec();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            multi.discard();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user1&quot;</span>));</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user2&quot;</span>));</span><br><span class="line">            jedis.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h2><p>说明：在SpringBoot2.x之后，原来使用的Jedis被替换成了lettuce</p>
+<p>Jedis：直连，多个线程操作的话不安全，如果要避免，使用Jedis pool</p>
+<p>Lettuce：采用netty，实例可以在多个线程中进行共享，不存在线程不安全，可以减少线程数量</p>
+<h2 id="Redis-conf详解"><a href="#Redis-conf详解" class="headerlink" title="Redis.conf详解"></a>Redis.conf详解</h2><p>启动的时候，通过配置文件来启动</p>
+<blockquote>
+<p>单位</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-02_17-21-11.png"></p>
+<ol>
+<li>配置文件unit单位对大小写不敏感</li>
+</ol>
+<blockquote>
+<p>包含</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-02_17-23-12.png"></p>
+<blockquote>
+<p>网络</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bind</span> 127.0.0.1 -::1<span class="comment">#绑定的ip</span></span><br><span class="line">protected-mode yes<span class="comment">#保护模式</span></span><br><span class="line">port 6379<span class="comment">#端口</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通用General</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes<span class="comment">#以守护进程的方式运行，默认是no，我们需要开启为yes</span></span><br><span class="line">pidfile /var/run/redis_6379.pid<span class="comment">#如果以后台方式运行，我们就需要指定pid进程文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#日志</span></span><br><span class="line"><span class="comment"># Specify the server verbosity level.</span></span><br><span class="line"><span class="comment"># This can be one of:</span></span><br><span class="line"><span class="comment"># debug (a lot of information, useful for development/testing)</span></span><br><span class="line"><span class="comment"># verbose (many rarely useful info, but not a mess like the debug level)</span></span><br><span class="line"><span class="comment"># notice (moderately verbose, what you want in production probably)</span></span><br><span class="line"><span class="comment"># warning (only very important / critical messages are logged)</span></span><br><span class="line">loglevel notice</span><br><span class="line">logfile <span class="string">&quot;&quot;</span><span class="comment">#日志的文件位置名</span></span><br><span class="line">databases 16<span class="comment">#默认的数据库数量</span></span><br><span class="line">always-show-logo no<span class="comment">#是否总是显示logo</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>快照</p>
+</blockquote>
+<p>持久化。在规定的时间内，执行了多少次操作，则会持久化到文件，则会持久化到文件.rdb .aof</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save 3600 1      如果900s内，至少有1个key进行了修改，就持久化</span></span><br><span class="line"><span class="comment"># save 300 100     如果300s内，至少有100个key进行了修改，就持久化</span></span><br><span class="line"><span class="comment"># save 60 10000    如果60s内，至少有10000个key进行了修改，就持久化</span></span><br><span class="line"><span class="comment">#之后学习持久化，会自己定义这个测试</span></span><br><span class="line">stop-writes-on-bgsave-error yes<span class="comment">#持久化出错是否还继续工作</span></span><br><span class="line">rdbcompression yes<span class="comment">#是否压缩rdb文件，需要消耗一些CPU资源</span></span><br><span class="line">rdbchecksum yes<span class="comment">#保存rdb文件的时候，进行文件校验</span></span><br><span class="line">dir ./<span class="comment">#rdb文件保存的目录</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>REPLICATION 复制，后面主从复制再讲解</p>
+</blockquote>
+<blockquote>
+<p>SECURITY安全</p>
+</blockquote>
+<p>可以设置redis密码，默认是没有密码的</p>
+<blockquote>
+<p>限制</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">maxclients 10000<span class="comment">#设置Redis的最大客户端数量</span></span><br><span class="line">maxmemory &lt;bytes&gt;<span class="comment">#Redis配置最大的内存容量</span></span><br><span class="line">maxmemory-policy noeviction<span class="comment">#内存到达上限之后的处理策略</span></span><br><span class="line">1、volatile-lru：只对设置了过期时间的key进行LRU（默认值） </span><br><span class="line">2、allkeys-lru ： 删除lru算法的key   </span><br><span class="line">3、volatile-random：随机删除即将过期key   </span><br><span class="line">4、allkeys-random：随机删除   </span><br><span class="line">5、volatile-ttl ： 删除即将过期的   </span><br><span class="line">6、noeviction ： 永不过期，返回错误</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>APPEND ONLY模式 aof配置</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">appendonly no<span class="comment">#默认不开启aof模式，默认rdb方式持久化。在大部分情况下，rdb够用</span></span><br><span class="line">appendfilename <span class="string">&quot;appendonly.aof&quot;</span><span class="comment">#持久化地文件名字</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># appendfsync always#每次修改都会sync，消耗性能</span></span><br><span class="line">appendfsync everysec<span class="comment">#每秒执行一次sync，但可能丢失这1s的数据</span></span><br><span class="line"><span class="comment"># appendfsync no	#不执行sync,操作系统自己同步数据，速度最快</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><h3 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h3><blockquote>
+<p>什么是RDB</p>
+</blockquote>
+<p>在主从复制中，RDB备用</p>
+<p>默认的是RDB，一般情况下不需要修改这个配置</p>
+<p>缺点：最后一次持久化后的数据可能丢失</p>
+<p>RDB保存的文件是dump.rdb都是在配置文件的快照中进行配置</p>
+<blockquote>
+<p>触发机制</p>
+</blockquote>
+<ol>
+<li>save的规则满足的情况下，会自动触发RDB规则</li>
+<li>执行flushall命令，也会触发RDB规则</li>
+<li>退出Redis，会触发</li>
+</ol>
+<p>备份就会自动生成一个dump.rdb文件</p>
+<blockquote>
+<p>如何恢复RDB文件</p>
+</blockquote>
+<ol>
+<li>只要将RDB文件放到Redis启动目录，Redis启动会检查dump.rdb，会自动恢复数据</li>
+<li>查看需要存放的位置</li>
+</ol>
+<blockquote>
+<p>基本上默认的配置就够用了</p>
+</blockquote>
+<p>优点：</p>
+<ol>
+<li>适合大规模的数据恢复</li>
+<li>对数据的完整性要求不高</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>需要一定的时间间隔进程操作。如果Redis宕机了，最后一次的数据就没了</li>
+<li>fork进程的时候，会占用一定内存</li>
+</ol>
+<h3 id="AOF-Append-Only-File"><a href="#AOF-Append-Only-File" class="headerlink" title="AOF(Append Only File)"></a>AOF(Append Only File)</h3><p>将我们的所有命令都记录下来，history，回复的时候就把这个文件全部再执行一遍</p>
+<blockquote>
+<p>是什么</p>
+</blockquote>
+<p>以日志的形式记录每一个操作，将Redis执行过的所有指令记录下来（读操作不记录），只许追加文件但不可以改写文件</p>
+<p>Aof保存的是appendonly.aof文件</p>
+<blockquote>
+<p>append</p>
+</blockquote>
+<p>默认不开启，我们需要手动进行配置</p>
+<p>重启Redis就能生效</p>
+<p>如果aof文件有错误，Redis是启动不起来的，我们需要修复配置文件</p>
+<p>Redis给我们提供了一个工具<code>redis-check-aof --fix</code></p>
+<blockquote>
+<p>优点和缺点</p>
+</blockquote>
+<p>优点：</p>
+<ol>
+<li>每一次修改都同步，文件完整性会更加好</li>
+<li>每秒同步一次，可能会丢失数据</li>
+<li>从不同步，效率最高</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>相对于数据文件来说，aof远远大于rdb，修复速度比rdb慢</li>
+<li>aof运行效率比rdb低</li>
+</ol>
+<p>扩展：</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-02_21-48-55.png"></p>
+<h2 id="Redis发布订阅"><a href="#Redis发布订阅" class="headerlink" title="Redis发布订阅"></a>Redis发布订阅</h2><p>通信  队列  发送者  订阅者</p>
+<p>订阅、发布消息图</p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_08-37-39.png"></p>
+<blockquote>
+<p>命令</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_08-40-02.png"></p>
+<blockquote>
+<p>原理</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_08-46-25.png"></p>
+<p>使用场景：</p>
+<ul>
+<li>实时消息系统</li>
+<li>实时聊天（频道作为聊天室，信息回显即可）</li>
+<li>订阅、关注</li>
+</ul>
+<p>稍微复杂的场景我们会使用消息中间件</p>
+<h2 id="Redis主从复制"><a href="#Redis主从复制" class="headerlink" title="Redis主从复制"></a>Redis主从复制</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_08-52-44.png"></p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_08-56-28.png"></p>
+<p>一主二从</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>只配置从库，不配置主库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info replication<span class="comment">#查看当前库的信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="一主二从"><a href="#一主二从" class="headerlink" title="一主二从"></a>一主二从</h3><p>默认情况下，每台Redis服务器都是主节点</p>
+<p>我们一般情况只用配置从机就好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slaveof x.x.x.x port</span><br></pre></td></tr></table></figure>
+
+<p>真是的主从配置应该在配置文件中配置，这样的话是永久的</p>
+<blockquote>
+<p>细节</p>
+</blockquote>
+<p>主机可以设置值，从机只能读不能写。主机中的所有信息和数据都会被从机保存</p>
+<p>测试：主机断开连接，从机依旧连接到主机，但是没有写操作。如果主机恢复了，从机会立刻恢复连接</p>
+<p>如果使用命令行配置来配置主从，这时候重启了，就会变为主机。只要变为从机，就会立刻从主机中获取值</p>
+<blockquote>
+<p>复制原理</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_09-20-25.png"></p>
+<blockquote>
+<p>层层链路</p>
+</blockquote>
+<p>上一个M连接下一个S这时候也可以完成我们的主从复制</p>
+<blockquote>
+<p>如果没有老大了，能不能自己选择一个老大呢？</p>
+</blockquote>
+<p>如果主机断开了连接，我们可以使用<code>slaveof no one</code>让自己变成主机，其他主机可以手动连接到这个新的主节点</p>
+<p>如果老大修复了，只能重新配置</p>
+<h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_09-32-22.png"></p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_09-34-28.png"></p>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_09-35-56.png"></p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<ol>
+<li><p>配置哨兵文件sentinel.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor myredis ip port 1</span><br></pre></td></tr></table></figure>
+
+<p>后面的数字1，代表主机挂了，slave投票看让谁接替成为主机，票数最多的就会成为主机</p>
+</li>
+<li><p>启动哨兵</p>
+</li>
+<li><p>断开主机</p>
+<p>如果Master节点断开了，就会从从机中选择一个服务器</p>
+</li>
+</ol>
+<p>如果主机此时回来了，只能归并到新的主机下，当做从机，这就是哨兵模式的规则</p>
+<blockquote>
+<p>哨兵模式</p>
+</blockquote>
+<p>优点：</p>
+<ol>
+<li>哨兵集群基于主从复制模式，所有的主从配置有点他都有</li>
+<li>主从可以切换，故障可以转移，系统可用性更好</li>
+<li>哨兵模式是主从模式的升级，手动到自动，更加健壮</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>Redis不好在线扩容，达到上限，在线扩容十分麻烦</li>
+<li>实现哨兵模式十分麻烦，有很多选择</li>
+</ol>
+<h2 id="Redis缓存穿透和雪崩"><a href="#Redis缓存穿透和雪崩" class="headerlink" title="Redis缓存穿透和雪崩"></a>Redis缓存穿透和雪崩</h2><h3 id="缓存穿透（查不到）"><a href="#缓存穿透（查不到）" class="headerlink" title="缓存穿透（查不到）"></a>缓存穿透（查不到）</h3><blockquote>
+<p>概念</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_09-59-50.png"></p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h4><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_10-01-17.png"></p>
+<h4 id="缓存空对象"><a href="#缓存空对象" class="headerlink" title="缓存空对象"></a>缓存空对象</h4><p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_10-03-03.png"></p>
+<h3 id="缓存击穿（量太大，缓存过期）"><a href="#缓存击穿（量太大，缓存过期）" class="headerlink" title="缓存击穿（量太大，缓存过期）"></a>缓存击穿（量太大，缓存过期）</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_10-04-45.png"></p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_10-07-12.png"></p>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><blockquote>
+<p>概念</p>
+</blockquote>
+<p>某个时间段，缓存集中过期失效，或者Redis宕机</p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p><img src="https://github.com/ZDogEgg/Pics-Images-for-Blog/raw/main/Snipaste_2021-10-03_10-14-00.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ZDogEgg</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://ZDogEgg.github.io/2021/09/29/redis/">http://ZDogEgg.github.io/2021/09/29/redis/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ZDogEgg</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: null,
+        id: '2021-09-29T21-39-49',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/03/elasticsearch/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="ElasticSearch">
+                        
+                        <span class="card-title">ElasticSearch</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ElasticSearch
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/27/mybatis-plus/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="MyBatis-Plus">
+                        
+                        <span class="card-title">MyBatis-Plus</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            MyBatis-Plus
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="artist"
+                   id="12172529"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">ZDogEgg</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "4";
+                    var startDate = "27";
+                    var startHour = "17";
+                    var startMinute = "20";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/ZDogEgg" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2452499907@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2452499907" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2452499907" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

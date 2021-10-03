@@ -575,6 +575,8 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   SimpleMailMessage mailMessage = <span class="keyword">new</span> SimpleMailMessage();</span><br><span class="line">   mailMessage.setSubject(<span class="string">&quot;验证码&quot;</span>);</span><br><span class="line">   mailMessage.setText(String.valueOf(Math.random()));</span><br><span class="line">   mailMessage.setTo(<span class="string">&quot;2452499907@qq.com&quot;</span>);</span><br><span class="line">   mailMessage.setFrom(<span class="string">&quot;2452499907@qq.com&quot;</span>);</span><br><span class="line">   mailSender.send(mailMessage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.mail.username</span>=<span class="string">2452499907@qq.com</span></span><br><span class="line"><span class="meta">spring.mail.password</span>=<span class="string">antaqsueycymecbg</span></span><br><span class="line"><span class="meta">spring.mail.host</span>=<span class="string">smtp.qq.com</span></span><br><span class="line"></span><br><span class="line"><span class="meta">spring.mail.properties.mail.smtp.ssl.enable</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h1><p>SpringBoot操作数据：spring-data jpa jdbc MongoDB redis</p>
 <p>SpringData也是与SpringBoot齐名的项目</p>
 <p>说明：在SpringBoot2.x之后，原来使用的jedis被替换为了lettuce</p>
@@ -720,30 +722,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/08/27/springboot/">
+                <a href="/2021/09/02/linux-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SpringBoot">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux学习">
                         
-                        <span class="card-title">SpringBoot</span>
+                        <span class="card-title">Linux学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            SpringBoot
+                            基础的Linux学习
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -756,12 +757,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
