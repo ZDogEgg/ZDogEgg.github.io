@@ -488,6 +488,83 @@
 
 <h2 id="Docker镜像讲解"><a href="#Docker镜像讲解" class="headerlink" title="Docker镜像讲解"></a>Docker镜像讲解</h2><h3 id="分层理解"><a href="#分层理解" class="headerlink" title="分层理解"></a>分层理解</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=19&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=19&amp;spm_id_from=pageDriver</a></p>
 <h3 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=20&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=20&amp;spm_id_from=pageDriver</a></p>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="什么是容器数据卷"><a href="#什么是容器数据卷" class="headerlink" title="什么是容器数据卷"></a>什么是容器数据卷</h3><p>如果数据都在容器中，容器删除，数据也都删除了。<u>需求：数据持久化</u></p>
+<p>容器之间可以有一个数据共享的技术。Docker容器中的数据同步到本地</p>
+<p>这就是卷技术。将容器内的目录挂载到系统上</p>
+<h3 id="使用数据卷"><a href="#使用数据卷" class="headerlink" title="使用数据卷"></a>使用数据卷</h3><blockquote>
+<p>方式一：使用命令来挂载</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v 主机目录:容器目录</span><br><span class="line"></span><br><span class="line">[root@zdogegg home]# docker run -it -v /home/ceshi:/home centos /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="实战：安装MySQL"><a href="#实战：安装MySQL" class="headerlink" title="实战：安装MySQL"></a>实战：安装MySQL</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=22&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=22&amp;spm_id_from=pageDriver</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@zdogegg home]# docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="具名挂载和匿名挂载"><a href="#具名挂载和匿名挂载" class="headerlink" title="具名挂载和匿名挂载"></a>具名挂载和匿名挂载</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">匿名挂载</span></span><br><span class="line">[root@zdogegg home]# docker run -d -P --name nginx01 -v /etc/nginx nginx</span><br><span class="line">db327d4f4365206f3a0052fb9a886515c1d02cc02c1a6a18fa377aee08eac0c7</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看所有volume的情况</span></span><br><span class="line">[root@zdogegg home]# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br><span class="line">local     7b792d6e5b8eabc19c89990330a694919adbe70786939c9cbb09c87788b6e3b2</span><br><span class="line">local     384b196427580a021b9ba9fdd827565ac83a74c8a5fd7049769c78d9f1f79627</span><br><span class="line">local     2041fd734ac521236a31962da81d1449085d95dd121448383c15145f62f163bf</span><br><span class="line">local     c21ad8bda76ad06a6f4576d2decd48529b5140725a296e67d98acdb71bfd8e51</span><br><span class="line">local     de00cf584864d24c34ce5b920e3f9d353400eeb876a79e7cf8e60a1f19f07b6f</span><br><span class="line">local     ebeaf0cec15be450edbae14135a6ba1af17f0c18c239d358d0d140972579ff0c</span><br><span class="line">local     f78460a34483978f8ce854e0d3564dacf53c68b7cc1361258fe175c3d4d8cf72</span><br><span class="line"><span class="meta">#</span><span class="bash">这种就是匿名挂载</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">具名挂载</span></span><br><span class="line">[root@zdogegg home]# docker run -d -P --name nginx02 -v juming-nginx:/etx/nginx nginx</span><br><span class="line">58784b5f1865bd076b61f29709eaac44fc86567718fcb1f8fd2b423e13168ac4</span><br><span class="line"></span><br><span class="line">[root@zdogegg home]# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br><span class="line">local     7b792d6e5b8eabc19c89990330a694919adbe70786939c9cbb09c87788b6e3b2</span><br><span class="line">local     384b196427580a021b9ba9fdd827565ac83a74c8a5fd7049769c78d9f1f79627</span><br><span class="line">local     2041fd734ac521236a31962da81d1449085d95dd121448383c15145f62f163bf</span><br><span class="line">local     c21ad8bda76ad06a6f4576d2decd48529b5140725a296e67d98acdb71bfd8e51</span><br><span class="line">local     de00cf584864d24c34ce5b920e3f9d353400eeb876a79e7cf8e60a1f19f07b6f</span><br><span class="line">local     ebeaf0cec15be450edbae14135a6ba1af17f0c18c239d358d0d140972579ff0c</span><br><span class="line">local     f78460a34483978f8ce854e0d3564dacf53c68b7cc1361258fe175c3d4d8cf72</span><br><span class="line">local     juming-nginx#具名挂载</span><br></pre></td></tr></table></figure>
+
+<p>大多情况使用具名挂载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-v 容器内路径 #匿名挂载</span><br><span class="line">-v 卷名:容器内路径 #具名挂载</span><br><span class="line">-v 宿主机路径:容器内路径 #指定路径挂载</span><br></pre></td></tr></table></figure>
+
+<h3 id="初识DockerFile"><a href="#初识DockerFile" class="headerlink" title="初识DockerFile"></a>初识DockerFile</h3><p>DockerFile就是用来构建Docker镜像的构建文件</p>
+<p>通过这个脚本可以生成镜像，镜像是一层一层的，脚本是一个个的命令，每个命令是一层</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">dockerfile 内容</span></span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"></span><br><span class="line">CMD echo &quot;----end----&quot;</span><br><span class="line">CMD /bin/bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@zdogegg docker-test-volume]# vim dockerfile1</span><br><span class="line"></span><br><span class="line">[root@zdogegg docker-test-volume]# docker build -f dockerfile1 -t dogegg/centos:11.0 .</span><br><span class="line">Sending build context to Docker daemon  2.048kB</span><br><span class="line">Step 1/4 : FROM centos</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> 5d0da3dc9764</span></span><br><span class="line">Step 2/4 : VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> Running <span class="keyword">in</span> fdb3e9fe52a1</span></span><br><span class="line">Removing intermediate container fdb3e9fe52a1</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> d5e7026648eb</span></span><br><span class="line">Step 3/4 : CMD echo &quot;----end----&quot;</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> Running <span class="keyword">in</span> 80ea319f2a3a</span></span><br><span class="line">Removing intermediate container 80ea319f2a3a</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> 5b52a390c39f</span></span><br><span class="line">Step 4/4 : CMD /bin/bash</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> Running <span class="keyword">in</span> da285d77ab63</span></span><br><span class="line">Removing intermediate container da285d77ab63</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> a25e9de4afb1</span></span><br><span class="line">Successfully built a25e9de4afb1</span><br><span class="line">Successfully tagged dogegg/centos:11.0</span><br></pre></td></tr></table></figure>
+
+<p>这种方式使用的非常多，因为我们通常会使用自己的镜像</p>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>多个容器同步数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@zdogegg /]# docker run -it --name docker01 dogegg/centos:1.0</span><br><span class="line">[root@zdogegg ~]# docker run -it --name docker02 --volumes-from docker01 dogegg/centos:11.0</span><br><span class="line">[root@zdogegg ~]# docker run -it --name docker03 --volumes-from docker02 dogegg/centos:11.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h2><p>DockerFile是构建Docker镜像的文件</p>
+<p>构建步骤：</p>
+<ol>
+<li>编写一个DockerFile文件</li>
+<li>docker build 构建成为一个镜像</li>
+<li>docker run运行镜像</li>
+<li>docker push发布镜像</li>
+</ol>
+<h3 id="DockerFile构建过程"><a href="#DockerFile构建过程" class="headerlink" title="DockerFile构建过程"></a>DockerFile构建过程</h3><p><strong>基础知识：</strong></p>
+<ol>
+<li>每个保留关键字（指令）必须大写</li>
+<li>从上到下顺序执行</li>
+<li><code>#</code>表示注释</li>
+<li>每一个指令都会创建提交一个新的镜像层</li>
+</ol>
+<p>DockerFile：构建文件，定义了一切的步骤，源代码</p>
+<p>DockerImages：通过DockerFile生成的镜像，最终发布和运行的产品</p>
+<p>Docker容器：镜像运行起来提供服务</p>
+<h3 id="DockerFile指令"><a href="#DockerFile指令" class="headerlink" title="DockerFile指令"></a>DockerFile指令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM #基础镜像</span><br><span class="line">MAINTAINER #镜像是谁写的，姓名+邮箱</span><br><span class="line">RUN #镜像构建时需要的命令</span><br><span class="line">ADD #添加内容</span><br><span class="line">WORKDIR #镜像工作目录</span><br><span class="line">VOLUME #挂载的目录</span><br><span class="line">EXPOSE #暴露端口</span><br><span class="line">CMD #指定这个容器启动时要运行的命令（只有最后一个会生效， 可被替代）</span><br><span class="line">ENTRYPOINT #指定这个容器启动时要运行的命令（可以追加命令）</span><br><span class="line">ONBUILD #触发指令</span><br><span class="line">COPY #将文件拷贝到镜像中</span><br><span class="line">ENV #构建的时候设置环境变量</span><br></pre></td></tr></table></figure>
+
+<h3 id="实战测试"><a href="#实战测试" class="headerlink" title="实战测试"></a>实战测试</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=28&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=28&amp;spm_id_from=pageDriver</a></p>
+<h3 id="实战：Tomcat镜像"><a href="#实战：Tomcat镜像" class="headerlink" title="实战：Tomcat镜像"></a>实战：Tomcat镜像</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=30&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=30&amp;spm_id_from=pageDriver</a></p>
+<h2 id="Docker网络"><a href="#Docker网络" class="headerlink" title="Docker网络"></a>Docker网络</h2><h3 id="理解Docker0"><a href="#理解Docker0" class="headerlink" title="理解Docker0"></a>理解Docker0</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4?p=34&amp;spm_id_from=pageDriver">https://www.bilibili.com/video/BV1og4y1q7M4?p=34&amp;spm_id_from=pageDriver</a></p>
+<h3 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h3><p><strong>网络模式</strong></p>
+<ul>
+<li>bridge：桥接</li>
+<li>none：不配置网络</li>
+<li>host：和宿主机共享网络</li>
+<li>container：容器内网络连通</li>
+</ul>
+<p><strong>测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name 容器名 --net bridge 镜像名</span><br><span class="line">docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet</span><br><span class="line">[root@zdogegg ~]# docker network ls</span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line">96262a61da8c   bridge    bridge    local</span><br><span class="line">25dd065b332e   host      host      local</span><br><span class="line">7b952fcc9d57   mynet     bridge    local</span><br><span class="line">1a60752ebcc4   none      null      local</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -626,30 +703,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/08/docker/">
+                <a href="/2022/02/18/rabbitmq/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Docker">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="RabbitMQ">
                         
-                        <span class="card-title">Docker</span>
+                        <span class="card-title">RabbitMQ</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Docker
+                            RabbitMQ
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -662,12 +738,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Docker/">
-                        <span class="chip bg-color">Docker</span>
+                    <a href="/tags/RabbitMQ/">
+                        <span class="chip bg-color">RabbitMQ</span>
                     </a>
                     
                 </div>
